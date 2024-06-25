@@ -138,10 +138,6 @@ input[type="text"] {
   gap: 1rem;
 }
 
-#form div > * {
-  flex: 1;
-}
-
 .btn {
   font: inherit;
   background-color: #fff;
