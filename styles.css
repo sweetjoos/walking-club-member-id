@@ -123,10 +123,23 @@ input[type="text"] {
   border-bottom: 1px dotted currentColor;
 }
 
+#form {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
 #form > div {
   display: flex;
+  justify-content: center;
+  justify-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+#form div > * {
+  flex: 1;
 }
 
 .btn {
