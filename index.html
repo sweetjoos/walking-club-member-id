@@ -3,8 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <title>Get your own certified walking club member id!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="./subset-MavenPro-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./subset-CourierPrime-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./subset-NothingYouCouldDo.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="root wrapper space">
@@ -20,10 +43,10 @@
           <label for="birth">Date of birth:</label>
           <input id="birth" type="date" required />
         </div>
-        <div>
+        <!-- <div>
           <label for="debut">Date of debut:</label>
-          <input id="debut" type="date" required />
-        </div>
+          <input id="debut" type="date" value="2017-04-01" required />
+        </div> -->
         <div>
           <label for="photo">Upload photo</label>
           <input type="file" accept=".png, .jpg, .jpeg" id="photo" required />
@@ -32,10 +55,10 @@
         <button class="btn">Get your card</button>
       </form>
       <div class="card wrapper" id="card">
-        <canvas id="canvas-bg" width="2799" height="1823"></canvas>
-        <canvas id="canvas-data" width="2799" height="1823"></canvas>
-        <canvas id="canvas-photo" width="2799" height="1823"></canvas>
-        <canvas id="canvas-texture" width="2799" height="1823"></canvas>
+        <canvas id="canvas-bg" width="1200" height="770"></canvas>
+        <canvas id="canvas-data" width="1200" height="770"></canvas>
+        <canvas id="canvas-photo" width="1200" height="770"></canvas>
+        <canvas id="canvas-texture" width="1200" height="770"></canvas>
         <a class="btn" href="#" download="card.png">Download card</a>
       </div>
       <footer>
