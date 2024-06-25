@@ -7,18 +7,18 @@ const canvasPhoto = document.querySelector("#canvas-photo");
 const canvasTexture = document.querySelector("#canvas-texture");
 const downloadLink = document.querySelector("a[download]");
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
   "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 const initCardBackground = () => {
@@ -46,14 +46,14 @@ const initCardText = (data) => {
   ctx.fillText(
     `${
       months[birthDate.getMonth()]
-    } ${birthDate.getDay()},${birthDate.getFullYear()}`,
+    } ${birthDate.getDate()},${birthDate.getFullYear()}`,
     1820,
     616
   );
   ctx.fillText(
     `${
       months[debutDate.getMonth()]
-    } ${debutDate.getDay()},${debutDate.getFullYear()}`,
+    } ${debutDate.getDate()},${debutDate.getFullYear()}`,
     1819,
     795
   );
