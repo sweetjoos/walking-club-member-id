@@ -32,34 +32,52 @@ const initCardBackground = () => {
   };
 };
 
-const initCardText = (data) => {
+const initCardText = async (data) => {
   const { name, birthDate, debutDate } = data;
   const { width, height } = canvasText;
   const ctx = canvasText.getContext("2d");
+
+  const birthDateText = `${
+    months[birthDate.getMonth()]
+  } ${birthDate.getDate()}, ${birthDate.getFullYear()}`;
+  const debutDateText = `${
+    months[debutDate.getMonth()]
+  } ${debutDate.getDate()}, ${debutDate.getFullYear()}`;
+
   ctx.clearRect(0, 0, width, height);
-
   ctx.fillStyle = "#000";
-  ctx.font = "bold 98px 'Courier Prime', monospace";
+
+  // Set default fonts
+  ctx.font = "bold 98px monospace";
   ctx.fillText(name.toUpperCase(), 1866, 476, 583);
-
   ctx.letterSpacing = "-1px";
-  ctx.fillText(
-    `${
-      months[birthDate.getMonth()]
-    } ${birthDate.getDate()},${birthDate.getFullYear()}`,
-    1820,
-    616
-  );
-  ctx.fillText(
-    `${
-      months[debutDate.getMonth()]
-    } ${debutDate.getDate()},${debutDate.getFullYear()}`,
-    1819,
-    795
-  );
-
-  ctx.font = "normal 117px 'Nothing You Could Do', cursive";
+  ctx.fillText(birthDateText, 1820, 616);
+  ctx.fillText(debutDateText, 1819, 795);
+  ctx.font = "normal 117px cursive";
   ctx.fillText(name.toUpperCase(), 1633, 1539, 723);
+
+  try {
+    await Promise.all([
+      document.fonts.load(
+        "98px 'Courier Prime'",
+        name + birthDateText + debutDateText
+      ),
+      document.fonts.load("117px 'Nothing You Could Do'", name),
+    ]);
+
+    ctx.clearRect(0, 0, width, 900);
+    ctx.font = "bold 98px 'Courier Prime', monospace";
+    ctx.fillText(name.toUpperCase(), 1866, 476, 583);
+    ctx.letterSpacing = "-1px";
+    ctx.fillText(birthDateText, 1820, 616);
+    ctx.fillText(debutDateText, 1819, 795);
+
+    ctx.clearRect(0, 1400, width, height);
+    ctx.font = "normal 117px 'Nothing You Could Do', cursive";
+    ctx.fillText(name.toUpperCase(), 1633, 1539, 723);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const initPhotoCanvas = (e) => {
@@ -109,9 +127,9 @@ const mergeCanvases = () => {
   return mergedDataURL;
 };
 
-const showCard = (data) => {
+const showCard = async (data) => {
   initCardBackground();
-  initCardText(data);
+  await initCardText(data);
 
   const cardUrl = mergeCanvases();
   const image = new Image();
@@ -135,7 +153,7 @@ const handleSubmit = async (e) => {
   const birthDate = new Date(currentTarget.birth.value);
   const debutDate = new Date(currentTarget.debut.value);
 
-  showCard({ name, birthDate, debutDate });
+  await showCard({ name, birthDate, debutDate });
 };
 
 form.addEventListener("submit", handleSubmit);
