@@ -45,12 +45,10 @@ const initCardText = async (data) => {
   } ${debutDate.getDate()}, ${debutDate.getFullYear()}`;
 
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "#000";
+  ctx.fillStyle = "#222";
 
-  // Set default fonts
   ctx.font = "bold 98px monospace";
   ctx.fillText(name.toUpperCase(), 1866, 476, 583);
-  ctx.letterSpacing = "-1px";
   ctx.fillText(birthDateText, 1820, 616);
   ctx.fillText(debutDateText, 1819, 795);
   ctx.font = "normal 117px cursive";
@@ -68,7 +66,6 @@ const initCardText = async (data) => {
     ctx.clearRect(0, 0, width, 900);
     ctx.font = "bold 98px 'Courier Prime', monospace";
     ctx.fillText(name.toUpperCase(), 1866, 476, 583);
-    ctx.letterSpacing = "-1px";
     ctx.fillText(birthDateText, 1820, 616);
     ctx.fillText(debutDateText, 1819, 795);
 
