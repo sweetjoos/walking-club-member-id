@@ -37,6 +37,7 @@ const initCardSignature = (ctx, signature) => {
   const { width, height } = canvasSignature;
   ctx.clearRect(0, 0, width, height);
   ctx.save();
+  ctx.fillStyle = "#333";
   ctx.rotate((-3 * Math.PI) / 180);
   ctx.translate(-150, 125);
   ctx.font = "normal 117px 'Nothing You Could Do', cursive";
@@ -58,7 +59,7 @@ const initCardText = async (data) => {
   } ${debutDate.getDate()}, ${debutDate.getFullYear()}`;
 
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "#222";
+  ctx.fillStyle = "#333";
 
   ctx.font = "bold 98px monospace";
   ctx.fillText(name.toUpperCase(), 1866, 476, 583);
@@ -94,7 +95,7 @@ const initPhotoCanvas = (e) => {
   const img = e.currentTarget;
 
   ctx.filter = "grayscale(1)";
-  ctx.drawImage(img, 215, 423, 890, 1020);
+  ctx.drawImage(img, 215, 423, 890, 1022);
   URL.revokeObjectURL(img.src);
 };
 
@@ -107,39 +108,15 @@ const initPhotoTexture = (e) => {
     ctx.filter = "brightness(16.5)";
     ctx.globalCompositeOperation = "screen";
     ctx.globalAlpha = 0.05;
-    // ctx.drawImage(texture, 215, 423, 890, 1020);
 
-    ctx.fillStyle = "red";
-    ctx.drawImage(texture, 215, 423, 300, 160);
-    ctx.drawImage(texture, 515, 423, 300, 160);
-    ctx.drawImage(texture, 815, 423, 300, 160);
-
-    ctx.drawImage(texture, 215, 583, 300, 160);
-    ctx.drawImage(texture, 515, 583, 300, 160);
-    ctx.drawImage(texture, 815, 583, 300, 160);
-
-    ctx.drawImage(texture, 215, 743, 300, 160);
-    ctx.drawImage(texture, 515, 743, 300, 160);
-    ctx.drawImage(texture, 815, 743, 300, 160);
-
-    ctx.drawImage(texture, 215, 903, 300, 160);
-    ctx.drawImage(texture, 515, 903, 300, 160);
-    ctx.drawImage(texture, 815, 903, 300, 160);
-
-    ctx.drawImage(texture, 215, 1063, 300, 160);
-    ctx.drawImage(texture, 515, 1063, 300, 160);
-    ctx.drawImage(texture, 815, 1063, 300, 160);
-
-    ctx.drawImage(texture, 215, 1223, 300, 160);
-    ctx.drawImage(texture, 515, 1223, 300, 160);
-    ctx.drawImage(texture, 815, 1223, 300, 160);
-
-    ctx.drawImage(texture, 215, 1383, 300, 160);
-    ctx.drawImage(texture, 515, 1383, 300, 160);
-    ctx.drawImage(texture, 815, 1383, 300, 160);
+    for (let x = 215; x <= 815; x = x + 300) {
+      for (let y = 423; y <= 1383; y = y + 160) {
+        ctx.drawImage(texture, x, y, 300, 160);
+      }
+    }
 
     ctx.clearRect(1105, 0, width, height);
-    ctx.clearRect(0, 1430, width, height);
+    ctx.clearRect(0, 1445, width, height);
   };
 };
 
