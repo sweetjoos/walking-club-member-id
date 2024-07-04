@@ -77,7 +77,7 @@ const initCardText = async (data) => {
     ]);
 
     ctx.clearRect(0, 0, width, 900);
-    ctx.font = "bold 98px 'Courier Prime', monospace";
+    ctx.font = "98px 'Courier Prime', monospace";
     ctx.fillText(name.toUpperCase(), 1866, 476, 583);
     ctx.fillText(birthDateText, 1820, 616);
     ctx.fillText(debutDateText, 1819, 795);
