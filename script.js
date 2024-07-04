@@ -155,7 +155,7 @@ const mergeCanvases = () => {
   ctx.drawImage(canvasTexture, 0, 0);
   ctx.drawImage(canvasSignature, 0, 0);
 
-  const mergedDataURL = canvasMerged.toDataURL("image/jpeg", 0.7);
+  const mergedDataURL = canvasMerged.toDataURL("image/jpeg", 0.6);
 
   return mergedDataURL;
 };
