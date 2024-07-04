@@ -5,6 +5,7 @@ const canvasBackground = document.querySelector("#canvas-bg");
 const canvasText = document.querySelector("#canvas-data");
 const canvasPhoto = document.querySelector("#canvas-photo");
 const canvasTexture = document.querySelector("#canvas-texture");
+const canvasSignature = document.querySelector("#canvas-signature");
 const downloadLink = document.querySelector("a[download]");
 const months = [
   "Jan",
@@ -32,10 +33,22 @@ const initCardBackground = () => {
   };
 };
 
+const initCardSignature = (ctx, signature) => {
+  const { width, height } = canvasSignature;
+  ctx.clearRect(0, 0, width, height);
+  ctx.save();
+  ctx.rotate((-3 * Math.PI) / 180);
+  ctx.translate(-150, 125);
+  ctx.font = "normal 117px 'Nothing You Could Do', cursive";
+  ctx.fillText(signature, 1633, 1539, 723);
+  ctx.restore();
+};
+
 const initCardText = async (data) => {
   const { name, birthDate, debutDate } = data;
   const { width, height } = canvasText;
   const ctx = canvasText.getContext("2d");
+  const signatureCtx = canvasSignature.getContext("2d");
 
   const birthDateText = `${
     months[birthDate.getMonth()]
@@ -70,8 +83,7 @@ const initCardText = async (data) => {
     ctx.fillText(debutDateText, 1819, 795);
 
     ctx.clearRect(0, 1400, width, height);
-    ctx.font = "normal 117px 'Nothing You Could Do', cursive";
-    ctx.fillText(name.toUpperCase(), 1633, 1539, 723);
+    initCardSignature(signatureCtx, name.toUpperCase());
   } catch (error) {
     console.log(error);
   }
@@ -82,11 +94,12 @@ const initPhotoCanvas = (e) => {
   const img = e.currentTarget;
 
   ctx.filter = "grayscale(1)";
-  ctx.drawImage(img, 215, 425, 890, 1020);
+  ctx.drawImage(img, 215, 423, 890, 1020);
   URL.revokeObjectURL(img.src);
 };
 
 const initPhotoTexture = (e) => {
+  const { width, height } = canvasTexture;
   const ctx = canvasTexture.getContext("2d");
   const texture = new Image();
   texture.src = "./texture.png";
@@ -94,7 +107,38 @@ const initPhotoTexture = (e) => {
     ctx.filter = "brightness(16.5)";
     ctx.globalCompositeOperation = "screen";
     ctx.globalAlpha = 0.05;
-    ctx.drawImage(texture, 215, 425, 890, 1020);
+    // ctx.drawImage(texture, 215, 423, 890, 1020);
+
+    ctx.fillStyle = "red";
+    ctx.drawImage(texture, 215, 423, 300, 160);
+    ctx.drawImage(texture, 515, 423, 300, 160);
+    ctx.drawImage(texture, 815, 423, 300, 160);
+
+    ctx.drawImage(texture, 215, 583, 300, 160);
+    ctx.drawImage(texture, 515, 583, 300, 160);
+    ctx.drawImage(texture, 815, 583, 300, 160);
+
+    ctx.drawImage(texture, 215, 743, 300, 160);
+    ctx.drawImage(texture, 515, 743, 300, 160);
+    ctx.drawImage(texture, 815, 743, 300, 160);
+
+    ctx.drawImage(texture, 215, 903, 300, 160);
+    ctx.drawImage(texture, 515, 903, 300, 160);
+    ctx.drawImage(texture, 815, 903, 300, 160);
+
+    ctx.drawImage(texture, 215, 1063, 300, 160);
+    ctx.drawImage(texture, 515, 1063, 300, 160);
+    ctx.drawImage(texture, 815, 1063, 300, 160);
+
+    ctx.drawImage(texture, 215, 1223, 300, 160);
+    ctx.drawImage(texture, 515, 1223, 300, 160);
+    ctx.drawImage(texture, 815, 1223, 300, 160);
+
+    ctx.drawImage(texture, 215, 1383, 300, 160);
+    ctx.drawImage(texture, 515, 1383, 300, 160);
+    ctx.drawImage(texture, 815, 1383, 300, 160);
+
+    ctx.clearRect(1105, 0, width, height);
   };
 };
 
@@ -118,6 +162,7 @@ const mergeCanvases = () => {
   ctx.drawImage(canvasText, 0, 0);
   ctx.drawImage(canvasPhoto, 0, 0);
   ctx.drawImage(canvasTexture, 0, 0);
+  ctx.drawImage(canvasSignature, 0, 0);
 
   const mergedDataURL = canvasMerged.toDataURL("image/jpg");
 
