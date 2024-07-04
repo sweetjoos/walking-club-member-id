@@ -139,6 +139,7 @@ const initPhotoTexture = (e) => {
     ctx.drawImage(texture, 815, 1383, 300, 160);
 
     ctx.clearRect(1105, 0, width, height);
+    ctx.clearRect(0, 1430, width, height);
   };
 };
 
@@ -164,7 +165,7 @@ const mergeCanvases = () => {
   ctx.drawImage(canvasTexture, 0, 0);
   ctx.drawImage(canvasSignature, 0, 0);
 
-  const mergedDataURL = canvasMerged.toDataURL("image/jpg");
+  const mergedDataURL = canvasMerged.toDataURL("image/jpeg", 0.8);
 
   return mergedDataURL;
 };
