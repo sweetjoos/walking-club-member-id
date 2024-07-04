@@ -96,6 +96,19 @@ const initPhotoCanvas = (e) => {
 
   ctx.filter = "grayscale(1)";
   ctx.drawImage(img, 215, 423, 890, 1022);
+  const imageData = ctx.getImageData(215, 423, 890, 1022);
+  const { data } = imageData;
+  const { length } = data;
+  const amount = 1;
+
+  for (let i = 0; i < length; i += 4) {
+    const luma = data[i] * 0.2126 + data[i + 1] * 0.7152 + data[i + 2] * 0.0722;
+    data[i + 0] += (luma - data[i + 0]) * amount;
+    data[i + 1] += (luma - data[i + 1]) * amount;
+    data[i + 2] += (luma - data[i + 2]) * amount;
+  }
+
+  ctx.putImageData(imageData, 215, 423);
   URL.revokeObjectURL(img.src);
 };
 
