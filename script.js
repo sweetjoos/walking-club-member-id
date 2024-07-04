@@ -37,7 +37,7 @@ const initCardSignature = (ctx, signature) => {
   const { width, height } = canvasSignature;
   ctx.clearRect(0, 0, width, height);
   ctx.save();
-  ctx.fillStyle = "#333";
+  ctx.fillStyle = "#292929";
   ctx.rotate((-3 * Math.PI) / 180);
   ctx.translate(-150, 125);
   ctx.font = "normal 117px 'Nothing You Could Do', cursive";
@@ -59,7 +59,7 @@ const initCardText = async (data) => {
   } ${debutDate.getDate()}, ${debutDate.getFullYear()}`;
 
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "#333";
+  ctx.fillStyle = "#292929";
 
   ctx.font = "bold 98px monospace";
   ctx.fillText(name.toUpperCase(), 1866, 476, 583);
@@ -105,7 +105,7 @@ const initPhotoTexture = (e) => {
   const texture = new Image();
   texture.src = "./texture.png";
   texture.onload = () => {
-    ctx.filter = "brightness(16.5)";
+    ctx.filter = "brightness(16.5) grayscale(1)";
     ctx.globalCompositeOperation = "screen";
     ctx.globalAlpha = 0.05;
 
